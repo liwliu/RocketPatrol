@@ -13,10 +13,10 @@ class Menu extends Phaser.Scene{
 
     create() {
         let menuConfig = {
-            fontFamily: 'Courier',
+            fontFamily: 'p5hatty',
             fontSize: '28px',
-            backgroundColor: '#F3B141',
-            color: '#843605',
+            backgroundColor: '#D84141',
+            color: '#FFFFFF',
             align: 'right',
             padding: {
                 top: 5,
@@ -31,8 +31,8 @@ class Menu extends Phaser.Scene{
 
         this.add.text(75, 35, 'HI-SCORE:', menuConfig).setOrigin(0.5);
         this.highScoreText = this.add.text(65, 65, highScore, menuConfig).setOrigin(0.5);
-        menuConfig.backgroundColor = '#00FF00';
-        menuConfig.color = '#000';
+        menuConfig.backgroundColor = '#FFFFFF';
+        menuConfig.color = '#000000';
         this.add.text(game.config.width/2, game.config.height/2 + borderUISize + borderPadding, 'Press <- for Novice or -> for Expert', menuConfig).setOrigin(0.5);
 
         keyLEFT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
