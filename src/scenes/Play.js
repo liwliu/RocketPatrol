@@ -155,7 +155,4 @@ class Play extends Phaser.Scene {
         this.sound.play('sfx_explosion');
     }
 
-    getRandomDirection() {
-        return Math.floor(Math.random() * 2);
-    }
 }
