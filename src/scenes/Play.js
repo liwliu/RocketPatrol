@@ -5,8 +5,8 @@ class Play extends Phaser.Scene {
 
     preload() {
         this.load.image('starfield', 'assets/starfield.png');
-        this.load.image('rocket', 'assets/rocket.png');
-        this.load.image('spaceship', 'assets/spaceship.png');
+        this.load.image('protag', 'assets/Joker sprite.png');
+        this.load.image('mask', 'assets/joker_mask.png');
         this.load.spritesheet('explosion', './assets/explosion.png', {frameWidth: 64, frameHeight: 32, startFrame: 0, endFrame: 9});
         
     }
@@ -17,11 +17,11 @@ class Play extends Phaser.Scene {
             0,0,640,480, 'starfield'
         ).setOrigin(0,0);
 
-        this.p1Rocket = new Rocket(this, game.config.width/2, game.config.height - borderUISize - borderPadding, 'rocket').setOrigin(0.5, 0);
+        this.p1Rocket = new Rocket(this, game.config.width/2, game.config.height - borderUISize - borderPadding - 50, 'protag').setOrigin(0.5, 0);
 
-        this.ship1 = new Ship(this, game.config.width + borderUISize*6, borderUISize*4, 'spaceship', 0, 30).setOrigin(0, 0);
-        this.ship2 = new Ship(this, game.config.width + borderUISize*3, borderUISize*5 + borderPadding*2, 'spaceship', 0, 30).setOrigin(0, 0);
-        this.ship3 = new Ship(this, game.config.width, borderUISize*6 + borderPadding*4, 'spaceship', 0, 10).setOrigin(0, 0);
+        this.ship1 = new Ship(this, game.config.width + borderUISize*6, borderUISize*4, 'mask', 0, 30).setOrigin(0, 0);
+        this.ship2 = new Ship(this, game.config.width + borderUISize*3, borderUISize*5 + borderPadding*2, 'mask', 0, 30).setOrigin(0, 0);
+        this.ship3 = new Ship(this, game.config.width, borderUISize*6 + borderPadding*4, 'mask', 0, 10).setOrigin(0, 0);
 
         // green UI background
         this.add.rectangle(
@@ -29,7 +29,7 @@ class Play extends Phaser.Scene {
             borderUISize + borderPadding,
             game.config.width,
             borderUISize * 2,
-            0x00FF00,
+            0xD84141,
             ).setOrigin(0,0);
 
         // white borders
@@ -54,10 +54,10 @@ class Play extends Phaser.Scene {
         p1Score = 0;
 
         let scoreConfig = {
-            fontFamily: 'Courier',
+            fontFamily: 'p5hatty',
             fontSize: '28px',
-            backgroundColor: '#F3B141',
-            color: '#843605',
+            backgroundColor: '#FFD700',
+            color: '#FFFFFF',
             align: 'right',
             padding: {
                 top: 5,
@@ -120,11 +120,17 @@ class Play extends Phaser.Scene {
 
     }
 
-    checkCollision(rocket, ship) {
-        if (rocket.x < ship.x + ship.width &&
-            rocket.x + rocket.width > ship.x &&
-            rocket.y < ship.y + ship.height &&
-            rocket.height + rocket.y > ship.y) {
+    checkCollision(protag, ship) {
+        if (protag
+.x < ship.x + ship.width &&
+            protag
+.x + protag
+.width > ship.x &&
+            protag
+.y < ship.y + ship.height &&
+            protag
+.height + protag
+.y > ship.y) {
                 return true;
         } else {
             return false;
@@ -147,5 +153,9 @@ class Play extends Phaser.Scene {
 
         
         this.sound.play('sfx_explosion');
+    }
+
+    getRandomDirection() {
+        return Math.floor(Math.random() * 2);
     }
 }
