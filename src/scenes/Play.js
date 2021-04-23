@@ -37,6 +37,7 @@ class Play extends Phaser.Scene {
 	    this.add.rectangle(0, 0, borderUISize, game.config.height, 0xFFFFFF).setOrigin(0 ,0);
 	    this.add.rectangle(game.config.width - borderUISize, 0, borderUISize, game.config.height, 0xFFFFFF).setOrigin(0 ,0);
 
+
         keyF = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.F);
         keyR = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.R);
         keyLEFT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
@@ -48,6 +49,7 @@ class Play extends Phaser.Scene {
             frameRate: 30
         });
 
+        //score configuration and display
         this.p1Score = 0;
 
         let scoreConfig = {
@@ -63,6 +65,8 @@ class Play extends Phaser.Scene {
             fixedWidth: 100
         }
         this.scoreLeft = this.add.text(borderUISize + borderPadding, borderUISize + borderPadding*2, this.p1Score, scoreConfig);
+
+        
         // GAME OVER flag
         this.gameOver = false;
         //60 sec clock
@@ -72,6 +76,7 @@ class Play extends Phaser.Scene {
             this.add.text(game.config.width/2, game.config.height/2 + 64, 'Press (R) to Restart or <- for Menu', scoreConfig).setOrigin(0.5);
             this.gameOver = true;
         }, null, this);
+
     }
 
     update() {
@@ -106,6 +111,12 @@ class Play extends Phaser.Scene {
             this.shipExplode(this.ship3);
         }
 
+        if (p1Score > highScore) {
+
+            highScore = p1Score;
+
+        }
+
     }
 
     checkCollision(rocket, ship) {
@@ -132,6 +143,8 @@ class Play extends Phaser.Scene {
 
         this.p1Score += ship.points;
         this.scoreLeft.text = this.p1Score;
+
+        
         this.sound.play('sfx_explosion');
     }
 }
