@@ -49,7 +49,7 @@ class Play extends Phaser.Scene {
         });
 
         // initialize score
-        this.p1Score = 0;
+        p1Score = 0;
 
           // display score
         let scoreConfig = {
@@ -64,7 +64,7 @@ class Play extends Phaser.Scene {
             },
             fixedWidth: 100
         }
-        this.scoreLeft = this.add.text(borderUISize + borderPadding, borderUISize + borderPadding*2, this.p1Score, scoreConfig);
+        this.scoreLeft = this.add.text(borderUISize + borderPadding, borderUISize + borderPadding*2, p1Score, scoreConfig);
 
         // GAME OVER flag
         this.gameOver = false;
@@ -108,6 +108,10 @@ class Play extends Phaser.Scene {
         if (this.gameOver && Phaser.Input.Keyboard.JustDown(keyLEFT)) {
             this.scene.start("menuScene");
         }
+
+        // if (p1Score > highScore) {
+        //     highScore = p1Score;
+        // }
     }
 
     checkCollision(rocket, ship) {
@@ -134,8 +138,8 @@ class Play extends Phaser.Scene {
         });
 
         // score add and repaint
-        this.p1Score += ship.points;
-        this.scoreLeft.text = this.p1Score; 
+        p1Score += ship.points;
+        this.scoreLeft.text = p1Score; 
         
         this.sound.play('sfx_explosion');
 
